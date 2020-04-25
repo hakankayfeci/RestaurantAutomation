@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.438
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer", "BusinessLayer\BusinessLayer.csproj", "{62AB96FB-E539-42D0-9362-4D6F40591194}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{78732039-5CF4-4A24-821C-72F8136FE24E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationLayer", "PresentationLayer\PresentationLayer.csproj", "{7D52FE69-EC14-40BF-AEBA-53375624B414}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{62AB96FB-E539-42D0-9362-4D6F40591194}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62AB96FB-E539-42D0-9362-4D6F40591194}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62AB96FB-E539-42D0-9362-4D6F40591194}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62AB96FB-E539-42D0-9362-4D6F40591194}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78732039-5CF4-4A24-821C-72F8136FE24E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78732039-5CF4-4A24-821C-72F8136FE24E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78732039-5CF4-4A24-821C-72F8136FE24E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78732039-5CF4-4A24-821C-72F8136FE24E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D52FE69-EC14-40BF-AEBA-53375624B414}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D52FE69-EC14-40BF-AEBA-53375624B414}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D52FE69-EC14-40BF-AEBA-53375624B414}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D52FE69-EC14-40BF-AEBA-53375624B414}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D0F99ADD-1F52-4674-9814-1BF8154984C8}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://dev.azure.com/dogukangoktas
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = BusinessLayer\\BusinessLayer.csproj
+		SccProjectName1 = BusinessLayer
+		SccLocalPath1 = BusinessLayer
+		SccProjectUniqueName2 = DataLayer\\DataLayer.csproj
+		SccProjectName2 = DataLayer
+		SccLocalPath2 = DataLayer
+		SccProjectUniqueName3 = PresentationLayer\\PresentationLayer.csproj
+		SccProjectName3 = PresentationLayer
+		SccLocalPath3 = PresentationLayer
+	EndGlobalSection
+EndGlobal

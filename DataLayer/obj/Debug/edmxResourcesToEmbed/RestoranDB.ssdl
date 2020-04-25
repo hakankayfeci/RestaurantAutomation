@@ -1,0 +1,332 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RestoranDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AccountPayment">
+    <Key>
+      <PropertyRef Name="PaymentID" />
+    </Key>
+    <Property Name="PaymentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AdditionID" Type="int" />
+    <Property Name="CustomerID" Type="int" />
+    <Property Name="PaymentType" Type="varchar" MaxLength="15" />
+    <Property Name="PaymentDate" Type="datetime" />
+    <Property Name="TotalAmount" Type="money" />
+    <Property Name="AccountStatus" Type="bit" />
+    <Property Name="TableID" Type="int" />
+  </EntityType>
+  <EntityType Name="Additions">
+    <Key>
+      <PropertyRef Name="AdditionID" />
+    </Key>
+    <Property Name="AdditionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StaffID" Type="int" />
+    <Property Name="TableID" Type="int" />
+    <Property Name="TotalPrice" Type="int" />
+    <Property Name="AdditionDate" Type="datetime" />
+    <Property Name="ServiceType" Type="varchar" MaxLength="15" />
+    <Property Name="PaymentCode" Type="int" />
+    <Property Name="Status" Type="bit" />
+  </EntityType>
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="varchar" MaxLength="50" />
+    <Property Name="Status" Type="bit" />
+  </EntityType>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameSurname" Type="varchar" MaxLength="50" />
+    <Property Name="Phone" Type="varchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="Expense">
+    <Key>
+      <PropertyRef Name="ExpenseID" />
+    </Key>
+    <Property Name="ExpenseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StaffID" Type="int" />
+    <Property Name="ExpenseName" Type="varchar" MaxLength="50" />
+    <Property Name="ExpensePrice" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="ExpenseType" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="ProductOrders">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductID" Type="int" />
+    <Property Name="TableID" Type="int" />
+    <Property Name="ProductPiece" Type="int" />
+    <Property Name="OrderNote" Type="varchar" MaxLength="250" />
+    <Property Name="OrderStatus" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryID" Type="int" />
+    <Property Name="ProductName" Type="varchar" MaxLength="50" />
+    <Property Name="Price" Type="varchar" MaxLength="50" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="ProductImage" Type="image" />
+  </EntityType>
+  <EntityType Name="Reservations">
+    <Key>
+      <PropertyRef Name="ReservationID" />
+    </Key>
+    <Property Name="ReservationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerID" Type="int" />
+    <Property Name="TableID" Type="int" />
+    <Property Name="ReservationDate" Type="datetime" />
+    <Property Name="ReservationNote" Type="text" />
+    <Property Name="PersonCount" Type="int" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="Phone" Type="varchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="Staff">
+    <Key>
+      <PropertyRef Name="StaffID" />
+    </Key>
+    <Property Name="StaffID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TitleID" Type="int" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="Phone" Type="varchar" MaxLength="15" />
+    <Property Name="TcNumber" Type="varchar" MaxLength="11" />
+    <Property Name="WorkDateOfStarting" Type="datetime" />
+    <Property Name="WorkLeavingDate" Type="datetime" />
+    <Property Name="SecurityQuestion" Type="varchar" MaxLength="75" />
+    <Property Name="SecurityAnswer" Type="varchar" MaxLength="75" />
+    <Property Name="MonthlySalary" Type="money" />
+    <Property Name="StaffImage" Type="image" />
+  </EntityType>
+  <EntityType Name="Tables">
+    <Key>
+      <PropertyRef Name="TableID" />
+    </Key>
+    <Property Name="TableID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TableName" Type="varchar" MaxLength="15" />
+    <Property Name="Capacity" Type="varchar" MaxLength="10" />
+    <Property Name="Status" Type="bit" />
+  </EntityType>
+  <EntityType Name="Title">
+    <Key>
+      <PropertyRef Name="TitleID" />
+    </Key>
+    <Property Name="TitleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TitleName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_AccountPayment_AdditionID">
+    <End Role="Additions" Type="Self.Additions" Multiplicity="0..1" />
+    <End Role="AccountPayment" Type="Self.AccountPayment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Additions">
+        <PropertyRef Name="AdditionID" />
+      </Principal>
+      <Dependent Role="AccountPayment">
+        <PropertyRef Name="AdditionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AccountPayment_CustomerID">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+    <End Role="AccountPayment" Type="Self.AccountPayment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="AccountPayment">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AccountPayment_TableID">
+    <End Role="Tables" Type="Self.Tables" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AccountPayment" Type="Self.AccountPayment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tables">
+        <PropertyRef Name="TableID" />
+      </Principal>
+      <Dependent Role="AccountPayment">
+        <PropertyRef Name="TableID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Additions_StaffID">
+    <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+    <End Role="Additions" Type="Self.Additions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff">
+        <PropertyRef Name="StaffID" />
+      </Principal>
+      <Dependent Role="Additions">
+        <PropertyRef Name="StaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Additions_TableID">
+    <End Role="Tables" Type="Self.Tables" Multiplicity="0..1" />
+    <End Role="Additions" Type="Self.Additions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tables">
+        <PropertyRef Name="TableID" />
+      </Principal>
+      <Dependent Role="Additions">
+        <PropertyRef Name="TableID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Expense_Staff">
+    <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+    <End Role="Expense" Type="Self.Expense" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff">
+        <PropertyRef Name="StaffID" />
+      </Principal>
+      <Dependent Role="Expense">
+        <PropertyRef Name="StaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductOrders_Product">
+    <End Role="ProductOrders" Type="Self.ProductOrders" Multiplicity="1" />
+    <End Role="ProductOrders1" Type="Self.ProductOrders" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="ProductOrders">
+        <PropertyRef Name="OrderID" />
+      </Principal>
+      <Dependent Role="ProductOrders1">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductOrders_Table">
+    <End Role="Tables" Type="Self.Tables" Multiplicity="0..1" />
+    <End Role="ProductOrders" Type="Self.ProductOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tables">
+        <PropertyRef Name="TableID" />
+      </Principal>
+      <Dependent Role="ProductOrders">
+        <PropertyRef Name="TableID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_CategoryID">
+    <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reservations_CustomerID">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+    <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Reservations">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reservations_TableID">
+    <End Role="Tables" Type="Self.Tables" Multiplicity="0..1" />
+    <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tables">
+        <PropertyRef Name="TableID" />
+      </Principal>
+      <Dependent Role="Reservations">
+        <PropertyRef Name="TableID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Staff_TitleID">
+    <End Role="Title" Type="Self.Title" Multiplicity="0..1" />
+    <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Title">
+        <PropertyRef Name="TitleID" />
+      </Principal>
+      <Dependent Role="Staff">
+        <PropertyRef Name="TitleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RestoranDBModelStoreContainer">
+    <EntitySet Name="AccountPayment" EntityType="Self.AccountPayment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Additions" EntityType="Self.Additions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Expense" EntityType="Self.Expense" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductOrders" EntityType="Self.ProductOrders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reservations" EntityType="Self.Reservations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tables" EntityType="Self.Tables" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Title" EntityType="Self.Title" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AccountPayment_AdditionID" Association="Self.FK_AccountPayment_AdditionID">
+      <End Role="Additions" EntitySet="Additions" />
+      <End Role="AccountPayment" EntitySet="AccountPayment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AccountPayment_CustomerID" Association="Self.FK_AccountPayment_CustomerID">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="AccountPayment" EntitySet="AccountPayment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AccountPayment_TableID" Association="Self.FK_AccountPayment_TableID">
+      <End Role="Tables" EntitySet="Tables" />
+      <End Role="AccountPayment" EntitySet="AccountPayment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Additions_StaffID" Association="Self.FK_Additions_StaffID">
+      <End Role="Staff" EntitySet="Staff" />
+      <End Role="Additions" EntitySet="Additions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Additions_TableID" Association="Self.FK_Additions_TableID">
+      <End Role="Tables" EntitySet="Tables" />
+      <End Role="Additions" EntitySet="Additions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Expense_Staff" Association="Self.FK_Expense_Staff">
+      <End Role="Staff" EntitySet="Staff" />
+      <End Role="Expense" EntitySet="Expense" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductOrders_Product" Association="Self.FK_ProductOrders_Product">
+      <End Role="ProductOrders" EntitySet="ProductOrders" />
+      <End Role="ProductOrders1" EntitySet="ProductOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductOrders_Table" Association="Self.FK_ProductOrders_Table">
+      <End Role="Tables" EntitySet="Tables" />
+      <End Role="ProductOrders" EntitySet="ProductOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_CategoryID" Association="Self.FK_Products_CategoryID">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reservations_CustomerID" Association="Self.FK_Reservations_CustomerID">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Reservations" EntitySet="Reservations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reservations_TableID" Association="Self.FK_Reservations_TableID">
+      <End Role="Tables" EntitySet="Tables" />
+      <End Role="Reservations" EntitySet="Reservations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Staff_TitleID" Association="Self.FK_Staff_TitleID">
+      <End Role="Title" EntitySet="Title" />
+      <End Role="Staff" EntitySet="Staff" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
